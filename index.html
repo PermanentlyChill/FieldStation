@@ -18,8 +18,16 @@
 
 
 
+
+
+
+
     .history-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.history-table-wrap{overflow-x:auto;margin-top:14px}.history-table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.history-table th,.history-table td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}.history-table th{color:var(--muted);font-weight:600}.history-table td{color:#dce8dc}.modal-backdrop{position:fixed;inset:0;background:#000a;z-index:20;display:grid;place-items:center;padding:16px;overflow:auto}.modal{width:min(560px,100%);max-height:92vh;overflow:auto;box-shadow:0 24px 80px #0009}.modal h2{font-size:21px;margin:5px 0 0}.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}.modal label{display:grid;gap:6px;font-size:12px;color:var(--muted);margin:12px 0}.modal input{width:100%;background:#0d1b17;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text)}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.modal details{margin-top:15px;color:var(--muted);font-size:12px}.modal summary{cursor:pointer;color:var(--green)}.modal a{color:var(--green)}.divider-line{height:1px;background:var(--line);margin:16px 0}.history-table .type{color:var(--blue)}
     @media(max-width:520px){.history-stats{grid-template-columns:1fr 1fr}.history-stats>div:last-child{grid-column:span 2}.modal{padding:15px}}
+
+
+
+
 
 
 
@@ -41,10 +49,18 @@
 
 
 
+
+
+
+
     <section class="hero" aria-live="polite">
       <div><div class="eyebrow" id="placeName">FRUITLAND, IDAHO</div><h2 id="condition">Loading local conditions…</h2><p class="summary" id="updated">Connecting to forecast data</p><div class="temp" id="temperature">—°</div><div class="hero-meta"><span>Feels like <b id="feels">—</b></span><span>Humidity <b id="humidity">—</b></span><span>Wind <b id="wind">—</b></span></div></div>
       <div class="hero-right"><div class="weather-symbol" id="weatherIcon">🌤️</div><div class="hero-stat"><strong id="highlow">— / —</strong><span>Today's high / low</span><br><strong style="margin-top:12px" id="sunrise">—</strong><span>Sunrise</span></div></div>
     </section>
+
+
+
+
 
 
 
@@ -64,13 +80,25 @@
 
 
 
+
+
+
+
     <div class="section-head"><div><h3>Field notes</h3><p>Rule-based guidance from the forecast, not a crop-specific diagnosis</p></div></div>
     <section class="card advisory-list" id="advisories"><div class="empty">Waiting for weather data…</div></section>
 
 
 
 
+
+
+
+
     <div class="radar-forecast-grid"><div><div class="section-head"><div><h3>Today by the hour</h3><p>Hour-by-hour forecast through tonight</p></div></div><section class="card"><div class="hourly" id="hourly"><div class="empty">Hourly forecast will appear here.</div></div></section></div><section class="card radar-card"><div class="radar-heading"><div><h3>Recent radar</h3><p>Observed precipitation · past 2 hours</p></div><span class="status" id="radarStatus">Loading radar…</span></div><div id="radarMap" class="radar-map" role="region" aria-label="Recent precipitation radar map"></div><div class="radar-controls"><button class="btn" id="radarPlay" type="button" disabled>▶ Play</button><input class="radar-range" id="radarRange" type="range" min="0" max="0" value="0" aria-label="Radar time" disabled><span class="status" id="radarFrameTime">—</span></div><p class="radar-credit">Radar data by <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a>. Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>.</p><p class="metric-note">Radar shows recent observations. Use today’s hourly forecast for what’s ahead.</p></section></div>
+
+
+
+
 
 
 
@@ -81,8 +109,16 @@
 
 
 
+
+
+
+
     <div class="section-head"><div><h3>Growing degree days</h3><p>Daily GDD estimate · base 10°C / 50°F, no upper cap</p></div></div>
     <section class="card"><div class="metric-top"><span>Today's estimated GDD</span><span class="metric-icon">🌾</span></div><div class="metric-value" id="gdd">—</div><div class="metric-note" id="gddNote">Calculated from daily average air temperature</div></section>
+
+
+
+
 
 
 
@@ -118,8 +154,12 @@
       <div class="advisory"><div class="badge">🌡️</div><div><h4>Station observations</h4><p>Reserved for measurements from physical sensors you connect in a future release.</p></div></div>
     </section>
     <div class="notice">Important: Soil temperature and moisture are gridded weather-model estimates, not measurements from a sensor in your garden. Local shade, soil type, irrigation and slope can make actual conditions quite different. Use an inexpensive soil thermometer and moisture probe for irrigation or frost-critical decisions.</div>
-    <footer class="foot"><span>Weather data: Open-Meteo · Forecast models may change</span><span id="attribution">FieldStation · v0.3</span></footer>
+    <footer class="foot"><span>Weather data: Open-Meteo · Forecast models may change</span><span id="attribution">FieldStation · v0.4</span></footer>
   </main>
+
+
+
+
 
 
 
@@ -140,6 +180,10 @@
       <details><summary>First-time Supabase setup</summary><ol><li>Create a free project at <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a>.</li><li>Open the SQL Editor in your project.</li><li>Run the <code>supabase-schema.sql</code> file included with this download.</li><li>Copy the project URL and publishable/anon key from Project Settings → API.</li><li>Paste them above, save, then create an account or sign in.</li></ol></details>
     </section>
   </div>
+
+
+
+
 
 
 
@@ -187,6 +231,10 @@ async function importFullHistory(){const btn=$('importHistoryBtn');if(btn.disabl
 
 
 
+
+
+
+
 async function load(){const b=$('refreshBtn');b.disabled=true;setStatus('Updating…');try{const hourly='temperature_2m,relative_humidity_2m,dew_point_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,soil_temperature_0cm,soil_temperature_6cm,soil_moisture_0_to_1cm,soil_moisture_3_to_9cm,et0_fao_evapotranspiration,vapour_pressure_deficit';const daily='weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_max,wind_gusts_10m_max,et0_fao_evapotranspiration,uv_index_max';const current='temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,pressure_msl';const url=`https://api.open-meteo.com/v1/forecast?latitude=${state.lat}&longitude=${state.lon}&current=${current}&hourly=${hourly}&daily=${daily}&forecast_days=7&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm`;const r=await fetch(url);if(!r.ok)throw Error('Weather service returned an error');const d=await r.json();state.data=d;render(d);setStatus('Updated');$('updated').textContent=`Updated ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})} · ${d.timezone}`;try{await loadArchive();}catch(e){$('historyStatus').textContent='Archive unavailable; saved records retained';}const today=d.daily.time[0];const forecastRows=d.daily.time.map((date,i)=>recordFor(date,'Open-Meteo Forecast API · forecast snapshot','forecast_snapshot',{forecast_issued_at:new Date().toISOString(),temperature_max_c:d.daily.temperature_2m_max[i],temperature_min_c:d.daily.temperature_2m_min[i],precipitation_mm:d.daily.precipitation_sum[i],precipitation_probability_max_pct:d.daily.precipitation_probability_max[i],gdd_base_c:10,gdd_c:Math.max(0,((d.daily.temperature_2m_max[i]+d.daily.temperature_2m_min[i])/2)-10)}));await putRecords(forecastRows);state.history=await getRecords(locationKey());renderHistory();if(session()?.access_token)await syncCloud();}catch(e){setStatus('Could not update');$('condition').textContent='Weather data unavailable';$('updated').textContent=e.message+' — check your connection and try again.';}finally{b.disabled=false;}}
 function render(d){const c=d.current,h=d.hourly,day=d.daily;const idx=Math.max(0,h.time.findIndex(t=>t>=c.time));const i=idx<0?0:idx;const [desc,ico]=weather(c.weather_code);$('placeName').textContent=state.place.toUpperCase();$('condition').textContent=desc;$('weatherIcon').textContent=ico;$('temperature').textContent=F(c.temperature_2m);$('feels').textContent=F(c.apparent_temperature);$('humidity').textContent=pct(c.relative_humidity_2m);$('wind').textContent=mph(c.wind_speed_10m);$('highlow').textContent=`${F(day.temperature_2m_max[0])} / ${F(day.temperature_2m_min[0])}`;$('sunrise').textContent=new Date(day.sunrise[0]).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});$('modelTime').textContent=`${units()?d.elevation:Math.round(d.elevation*3.28084)} ${units()?'m':'ft'} elevation · ${d.timezone_abbreviation}`;
 $('soilTemp').textContent=F(h.soil_temperature_0cm[i]);$('soilTempNote').textContent=`${units()?'6 cm':'2 in'} depth: ${F(h.soil_temperature_6cm[i])}`;$('soilMoisture').textContent=h.soil_moisture_0_to_1cm[i]==null?'—':`${Math.round(h.soil_moisture_0_to_1cm[i]*100)}%`;$('soilMoistureNote').textContent=units()?'0–1 cm model estimate':'0–0.4 in model estimate';$('et0').textContent=mm(day.et0_fao_evapotranspiration[0]);$('vpd').textContent=h.vapour_pressure_deficit[i]==null?'—':`${num(h.vapour_pressure_deficit[i],2)} kPa`;$('dew').textContent=F(h.dew_point_2m[i]);$('rainChance').textContent=pct(day.precipitation_probability_max[0]);$('rainAmount').textContent=`Forecast total: ${mm(day.precipitation_sum[0])}`;$('gusts').textContent=mph(day.wind_gusts_10m_max[0]);$('uv').textContent=num(day.uv_index_max[0],1);
@@ -194,6 +242,7 @@ const avg=(day.temperature_2m_max[0]+day.temperature_2m_min[0])/2;const gdd=Math
 renderAdvisories(d,i);renderHourly(d,i);renderDays(d);}
 function renderHistory(){const all=state.history.filter(x=>x.record_type==='reanalysis_estimate').sort((x,y)=>x.record_date.localeCompare(y.record_date));const years=[...new Set(all.map(r=>r.record_date.slice(0,4)))].sort();const select=$('historyYear'),selected=select.value||'all';const wanted=years.includes(selected);if(select.options.length!==years.length+1||!wanted){select.innerHTML='<option value="all">All years</option>'+years.map(y=>`<option value="${y}">${y}</option>`).join('');select.value=wanted?selected:'all';}const season=$('historySeason').value||'all';const months={winter:[12,1,2],spring:[3,4,5],summer:[6,7,8],fall:[9,10,11]};const yearRows=select.value==='all'?all:all.filter(r=>r.record_date.startsWith(select.value));const a=season==='all'?yearRows:yearRows.filter(r=>months[season].includes(Number(r.record_date.slice(5,7))));$('recordCount').textContent=all.length.toLocaleString();$('yearsCount').textContent=years.length;$('coverageYears').textContent=years.length?(years[0]+'–'+years[years.length-1]):'—';$('historyStatus').textContent=`${all.length.toLocaleString()} historical days · ${state.history.filter(x=>x.record_type==='forecast_snapshot').length} forecast snapshots`;const valid=a.filter(r=>r.payload.temperature_max_c!=null&&r.payload.temperature_min_c!=null);const high=valid.reduce((best,r)=>!best||r.payload.temperature_max_c>best.payload.temperature_max_c?r:best,null);const low=valid.reduce((best,r)=>!best||r.payload.temperature_min_c<best.payload.temperature_min_c?r:best,null);const meanValues=valid.map(r=>r.payload.temperature_mean_c??((r.payload.temperature_max_c+r.payload.temperature_min_c)/2));const mean=meanValues.length?meanValues.reduce((x,y)=>x+y,0)/meanValues.length:null;const sum=k=>a.reduce((n,r)=>n+(Number(r.payload[k])||0),0);$('periodHigh').textContent=high?F(high.payload.temperature_max_c):'—';$('periodHighDate').textContent=high?.record_date||'';$('periodLow').textContent=low?F(low.payload.temperature_min_c):'—';$('periodLowDate').textContent=low?.record_date||'';$('periodMean').textContent=F(mean);$('periodRain').textContent=mm(sum('precipitation_mm'));$('periodSnow').textContent=a.some(r=>r.payload.snowfall_sum!=null)?`${snow(a.reduce((n,r)=>n+(Number(r.payload.snowfall_sum)||0),0))}`:'—';$('periodGdd').textContent=gddDisplay(sum('gdd_c'));const chartRows=a.slice(-30),max=Math.max(1,...chartRows.map(r=>r.payload.gdd_c||0));$('historyChart').innerHTML=chartRows.map(r=>{const v=r.payload.gdd_c||0;return `<div class="bar-wrap"><span class="bar-val">${num(units()?v:v*9/5,0)}</span><div class="bar" style="height:${Math.max(2,v/max*82)}%"></div><span class="bar-label">${r.record_date.slice(5)}</span></div>`;}).join('')||'<div class="empty">No historical data yet.</div>';const rows=[...a].reverse().slice(0,40);$('historyRows').innerHTML=rows.map(r=>`<tr><td>${r.record_date}</td><td>${F(r.payload.temperature_max_c)} / ${F(r.payload.temperature_min_c)}</td><td>${F(r.payload.temperature_mean_c)}</td><td>${mm(r.payload.precipitation_mm)}</td><td>${snow(r.payload.snowfall_cm)}</td><td>${gddDisplay(r.payload.gdd_c||0)}</td></tr>`).join('')||'<tr><td colspan="6">No historical archive records yet.</td></tr>';}
 function renderAdvisories(d,i){const h=d.hourly,day=d.daily;const tmin=day.temperature_2m_min[0],gust=day.wind_gusts_10m_max[0],rain=day.precipitation_sum[0],et=day.et0_fao_evapotranspiration[0],rh=h.relative_humidity_2m[i];const items=[];if(tmin<=2)items.push(['❄️','Frost watch',`Forecast low is ${F(tmin)}. Sensitive plants may need protection; cold-air pooling can make sheltered low spots colder.`,'warn']);else items.push(['🌡️','No broad frost signal',`Forecast low is ${F(tmin)}. Monitor local microclimates and tender seedlings.`,'good']);if(gust>=40)items.push(['💨','Wind protection',`Gusts may reach ${mph(gust)}. Secure row covers, young plants and lightweight structures.`,'warn']);if(et>=4)items.push(['💧','Elevated water demand',`Reference ET₀ is ${mm(et)} today. Check root-zone moisture before irrigating; ET₀ is not a direct watering prescription.`,'warn']);if(rain>=5)items.push(['🌧️','Rain in the forecast',`Expected precipitation is ${mm(rain)}. Recheck before scheduling irrigation or field work.`,'blue']);if(rh>=85)items.push(['🍃','High humidity',`Relative humidity is around ${Math.round(rh)}%. Dense canopies may dry slowly; favor airflow and avoid unnecessary leaf wetness.`,'blue']);if(!items.length)items.push(['🌱','Routine conditions',`No threshold-based growing alerts from the current rules. Check crop-specific needs and actual soil conditions.`,'good']);$('advisories').innerHTML=items.map(x=>`<div class="advisory"><div class="badge">${x[0]}</div><div><h4 class="${x[3]}">${x[1]}</h4><p>${x[2]}</p></div></div>`).join('');}function renderHourly(d,start){const h=d.hourly,today=d.current.time.slice(0,10);let out='';for(let i=start;i<h.time.length&&h.time[i].slice(0,10)===today;i++){const [desc,ico]=weather(h.weather_code[i]);out+=`<div class="hour"><div class="time">${localHour(h.time[i])}</div><div class="ico">${ico}</div><strong>${F(h.temperature_2m[i])}</strong><small>💧 ${pct(h.precipitation_probability[i])}</small><small>${desc}</small></div>`;} $('hourly').innerHTML=out||'<div class="empty">No remaining hourly forecast for today.</div>'; }
+
 
 function radarLabel(frame){return new Date(frame.time*1000).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});}
 function showRadarFrame(index){const frame=radarFrames[index];if(!frame||!radarMap||!radarMeta)return;if(radarLayer)radarMap.removeLayer(radarLayer);const tileUrl=radarMeta.host+frame.path+'/256/{z}/{x}/{y}/2/1_1.png';radarLayer=L.tileLayer(tileUrl,{maxZoom:7,opacity:.78,attribution:'Weather radar &copy; <a href="https://www.rainviewer.com/" target="_blank" rel="noopener">RainViewer</a>'}).addTo(radarMap);$('radarRange').value=String(index);$('radarFrameTime').textContent=radarLabel(frame);$('radarStatus').textContent=radarFrames.length+' frames · recent 2 hours';}
