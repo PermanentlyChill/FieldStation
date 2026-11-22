@@ -1,5 +1,5 @@
 {
-  "name": "FieldStation \u2014 Weather & Growing Conditions",
+  "name": "FieldStation — Weather for better gardening",
   "short_name": "FieldStation",
   "description": "Location-based weather, growing conditions, and long-term daily historical records.",
   "start_url": "./",
@@ -9,10 +9,16 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "fieldstation-app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "fieldstation-app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
