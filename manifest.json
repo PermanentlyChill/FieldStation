@@ -1,0 +1,18 @@
+{
+  "name": "FieldStation \u2014 Weather & Growing Conditions",
+  "short_name": "FieldStation",
+  "description": "Location-based weather, growing conditions, and long-term daily historical records.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b1715",
+  "theme_color": "#10231f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
