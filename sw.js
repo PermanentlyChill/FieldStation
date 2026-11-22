@@ -1,4 +1,4 @@
-const CACHE='fieldstation-v05';
+const CACHE='fieldstation-v06';
 const ASSETS=['./','./index.html','./manifest.json','./icon.svg','./fieldstation-app-icon-192.png','./fieldstation-app-icon-512.png','./fieldstation-brand-crop.jpg','./fieldstation-brand-transparent.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
