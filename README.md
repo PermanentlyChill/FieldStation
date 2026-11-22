@@ -1,61 +1,52 @@
-# FieldStation v0.3 — Daily weather archive and growing conditions PWA
+# FieldStation v0.4 — Weather for better gardening
 
-## What's in v0.3
-- Keeps the existing current weather, forecast, growing-condition dashboard, local IndexedDB storage, and optional Supabase sync.
-- Imports long-term **daily** historical weather for a searched location, beginning in 1940 where ERA5 data is available.
-- Uses daily summaries only for the long-term archive: daily mean/high/low temperature, apparent temperature, precipitation, rain, snowfall, wind, humidity, dew point, pressure, cloud cover, solar radiation, ET₀, wet-bulb temperature, VPD, and daily soil temperature/moisture estimates where supplied by the selected dataset.
-- Adds a year selector and historical summaries for high/low records, mean temperature, precipitation, snowfall, and growing degree days.
-- Imports history in five-year batches, saves each batch locally, and skips complete date blocks on later runs. If an import is interrupted, run it again; already-complete blocks are skipped.
-- Continues to save recent daily updates when the app refreshes.
+FieldStation is an installable weather and gardening dashboard for a selected location. The public site is published at [permanentlychill.github.io/FieldStation](https://permanentlychill.github.io/FieldStation/).
+
+## Current features
+
+- Current conditions, a seven-day outlook, and an hourly forecast for the current local day.
+- Recent precipitation radar with playback of observed frames from the past two hours. It shows recent radar observations, not future weather. Radar data by [RainViewer](https://www.rainviewer.com/); map data by [OpenStreetMap](https://www.openstreetmap.org/copyright).
+- Metric or imperial display units.
+- Gardening indicators for modelled soil temperature and moisture, ET₀, vapor pressure deficit, dew point, rain chance, wind gusts, UV, and growing degree days.
+- Rule-based field notes based on the forecast.
+- Daily historical weather archive, seasonal filters, summaries, and GDD chart. ERA5 coverage begins in 1940 where available.
+- Local history stored in IndexedDB, with optional two-way synchronization to the user's own Supabase project.
+- Responsive FieldStation branding and installable PWA icons.
+
+## Data notes
+
+Forecasts, historical reanalysis, and physical station readings are separate concepts. Historical ERA5 values are gridded estimates, not measurements at the selected address; the archive typically has a delay of several days. Soil temperature and moisture are model estimates, not on-site sensor readings. FieldStation does not create physical station observations.
+
+GDD uses daily maximum and minimum temperatures with a base of 10°C / 50°F and no upper cap. Crop-specific methods can require different bases or upper thresholds.
 
 ## Run locally
-Serve this folder over localhost (not by opening `index.html` directly):
 
-```bash
-python -m http.server 8000
-```
+Serve this folder over localhost rather than opening index.html directly:
+
+    python -m http.server 8000
 
 Then visit http://localhost:8000.
 
-## Historical archive behavior
-1. Search for a city/town/ZIP or use the location button.
-2. Press **Import full daily history (1940–present)** to backfill the selected location.
-3. FieldStation requests daily ERA5 reanalysis in five-year blocks and saves each completed block to IndexedDB.
-4. Use the year selector to inspect an individual year or all years. The table shows daily high/low/mean temperatures, precipitation, snowfall, and estimated GDD.
-5. Press **Update recent days** to refresh the latest available historical records without running the full import again.
-
-The archive intentionally does not store decades of hourly observations. ERA5 historical data is updated with a delay (commonly around five days), so the newest few days may not yet be present. Historical values are gridded reanalysis estimates, not observations from a station at the selected address. Coverage and available variables depend on the selected model and API response.
-
 ## Enable cloud sync
+
 1. Create a project at https://supabase.com.
-2. In Supabase, open **SQL Editor** and run `supabase-schema.sql`.
-3. Open **Project Settings → API** and copy the Project URL and the publishable key (or legacy anon key).
-4. In FieldStation, select **Cloud & settings**, paste the URL and key, and save.
+2. In Supabase SQL Editor, run supabase-schema.sql.
+3. In Project Settings → API, copy the project URL and publishable key (or legacy anon key).
+4. In FieldStation, open Cloud & settings, enter the URL and key, then save.
 5. Create an account or sign in. If email confirmation is enabled, confirm the email before signing in.
-6. Select **Sync local history now**. Sync also runs after a successful refresh when signed in.
+6. Choose Sync local history now. Sync also runs after a successful refresh when signed in.
 
-### Security
-- Use only the Supabase publishable/anon key in the browser.
-- Never use the `service_role` or secret key in FieldStation.
-- The supplied SQL enables row-level security and restricts each account to its own records.
-- The project URL/key and login session are stored in this browser's local storage. Do not use a shared/public device for a personal account.
-- If you host the app publicly, use HTTPS and review Supabase Auth settings, password policy and email confirmation settings.
-
-## Data definitions
-- `reanalysis_estimate`: past daily values retrieved from Open-Meteo's Historical Weather API. These are gridded reanalysis estimates, not observations from a personal station.
-- `forecast_snapshot`: forecast values captured at refresh time. They remain forecast data and may be replaced by a later forecast for the same target date.
-- `station_observation`: reserved for future physical sensor readings; v0.3 does not create these records.
-
-GDD is calculated from daily maximum and minimum temperature using base 10°C / 50°F, without an upper cap. This is a simple growing-degree-day convention; crops can require different bases or upper thresholds.
+Only use a Supabase publishable/anon key in the browser. Never enter a service-role or secret key. Project settings and login session are stored in the current browser; avoid shared devices for personal accounts. The supplied SQL uses row-level security to restrict each account to its own records.
 
 ## Deployment
-Upload the contents of this folder to a static HTTPS host such as GitHub Pages, Netlify or Cloudflare Pages. Open the deployed URL in Chrome on Android and choose **Install app** / **Add to Home screen**.
+
+The GitHub Actions workflow publishes the repository root to GitHub Pages whenever main is updated. The site is served over HTTPS. On Android, open the site in Chrome and choose Install app / Add to Home screen.
 
 ## Known limitations
-- The historical archive uses modelled gridded estimates. It is not a record of exact conditions at a specific property or weather station.
-- Some variables may not be available for every model, date, or region; unavailable values are stored as null rather than fabricated.
-- Air-quality history is not included in this archive import and needs a separate data source.
-- Cloud sync is optional and requires the user's own Supabase project. Large archives take longer to sync than the earlier 30-day dataset.
-- No background scheduled collection; recent history advances when the app is opened/refreshed.
-- Soil temperature and moisture are model estimates, not on-site sensor readings.
-- Open-Meteo API availability and terms apply. Review current provider terms before commercial/public use.
+
+- Archive values are modelled estimates, and recent historical data can be delayed.
+- Variables can be unavailable for a model, date, or region; unavailable values are left blank rather than fabricated.
+- Air-quality history is not included.
+- Cloud sync requires the user's own Supabase project.
+- History advances when the app is opened or refreshed; there is no background data collection.
+- Check current provider terms for Open-Meteo, RainViewer, and map tiles before commercial use.
