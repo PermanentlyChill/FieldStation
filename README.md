@@ -5,11 +5,14 @@ FieldStation is an installable weather and gardening dashboard for a selected lo
 ## Current features
 
 - Current conditions, a seven-day outlook, and an hourly forecast for the current local day.
+- Forecast freshness timestamps, stale-data notices, and a device-local last-known forecast for offline viewing.
+- Device-local saved locations with quick switching.
 - Precipitation timeline combining observed radar from the past two hours with a coarse, 12-hour model precipitation outlook over a local grid. Forecast overlays are model estimates, not radar imagery or storm-track guarantees. Observed radar by [RainViewer](https://www.rainviewer.com/), forecast data by [Open-Meteo](https://open-meteo.com/), and map data by [OpenStreetMap](https://www.openstreetmap.org/copyright).
 - Metric or imperial display units.
 - Gardening indicators for modelled soil temperature and moisture, ET₀, vapor pressure deficit, dew point, rain chance, wind gusts, UV, and growing degree days.
 - Rule-based field notes based on the forecast.
 - Daily historical weather archive, seasonal filters, summaries, and GDD chart. ERA5 coverage begins in 1940 where available.
+- Year-by-year archive import progress that resumes around completed years after an interruption or API rate limit.
 - Local history stored in IndexedDB, with optional two-way synchronization to the user's own Supabase project.
 - Responsive FieldStation branding and installable PWA icons.
 
