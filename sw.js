@@ -1,4 +1,4 @@
-const CACHE='fieldstation-v10';
+const CACHE='fieldstation-v11';
 const ASSETS=['./','./index.html','./manifest.json','./icon.svg','./fieldstation-app-icon-192.png','./fieldstation-app-icon-512.png','./fieldstation-brand-transparent.png'];
 const SHELL=new URL('./index.html',self.location.href).href;
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
