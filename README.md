@@ -5,7 +5,7 @@ FieldStation is an installable weather and gardening dashboard for a selected lo
 ## Current features
 
 - Current conditions, a seven-day outlook, and an hourly forecast for the current local day.
-- Recent precipitation radar with playback of observed frames from the past two hours. It shows recent radar observations, not future weather. Radar data by [RainViewer](https://www.rainviewer.com/); map data by [OpenStreetMap](https://www.openstreetmap.org/copyright).
+- Precipitation timeline combining observed radar from the past two hours with a coarse, 12-hour model precipitation outlook over a local grid. Forecast overlays are model estimates, not radar imagery or storm-track guarantees. Observed radar by [RainViewer](https://www.rainviewer.com/), forecast data by [Open-Meteo](https://open-meteo.com/), and map data by [OpenStreetMap](https://www.openstreetmap.org/copyright).
 - Metric or imperial display units.
 - Gardening indicators for modelled soil temperature and moisture, ET₀, vapor pressure deficit, dew point, rain chance, wind gusts, UV, and growing degree days.
 - Rule-based field notes based on the forecast.
